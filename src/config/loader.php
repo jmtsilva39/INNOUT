@@ -1,42 +1,54 @@
 <?php
 
-function loadModel($modelName) {
+// Função para carregar um modelo (classe) específico
+function loadModel($modelName)
+{
     require_once(MODEL_PATH . "/{$modelName}.php");
 }
 
-function loadView($viewName, $params = array()) {
-
-    if(count($params) > 0) {
-        foreach($params as $key => $value) {
-            if(strlen($key) > 0){
-                ${$key} = $value;
-            }
-        }
-    }
-
-    
-    require_once(VIEW_PATH . "/{$viewName}.php");
-}
-
-function loadTemplateView($viewName, $params = array())
+// Função para carregar uma visualização (arquivo de visualização) com parâmetros opcionais
+function loadView($viewName, $params = array())
 {
-
+    // Verifica se há parâmetros para passar para a visualização
     if (count($params) > 0) {
         foreach ($params as $key => $value) {
+            // Define variáveis com os nomes e valores dos parâmetros para a visualização
             if (strlen($key) > 0) {
                 ${$key} = $value;
             }
         }
     }
 
-
-
-    require_once(TEMPLATE_PATH . "/header.php");
-    require_once(TEMPLATE_PATH . "/left.php");
+    // Inclui o arquivo de visualização especificado
     require_once(VIEW_PATH . "/{$viewName}.php");
+}
+
+// Função para carregar uma visualização de template, que inclui cabeçalho, barra lateral, visualização e rodapé
+function loadTemplateView($viewName, $params = array())
+{
+    // Verifica se há parâmetros para passar para a visualização de template
+    if (count($params) > 0) {
+        foreach ($params as $key => $value) {
+            // Define variáveis com os nomes e valores dos parâmetros para a visualização de template
+            if (strlen($key) > 0) {
+                ${$key} = $value;
+            }
+        }
+    }
+
+    // Inclui o cabeçalho do template
+    require_once(TEMPLATE_PATH . "/header.php");
+    // Inclui a barra lateral do template
+    require_once(TEMPLATE_PATH . "/left.php");
+    // Inclui o arquivo de visualização especificado
+    require_once(VIEW_PATH . "/{$viewName}.php");
+    // Inclui o rodapé do template
     require_once(TEMPLATE_PATH . "/footer.php");
 }
 
-function renderTitle($title, $subtitle, $icon = null){
+// Função para renderizar um título na página, com opções para subtítulo e ícone
+function renderTitle($title, $subtitle, $icon = null)
+{
+    // Inclui o arquivo de título do template
     require_once(TEMPLATE_PATH . "/title.php");
 }
