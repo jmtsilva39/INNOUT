@@ -8,7 +8,7 @@ loadModel('WorkingHours');
 $timestamp = time();
 
 // Format the current date
-$today = date('d/m/Y', $timestamp);
+$today = date('d/m/Y');
 
 // Get the logged-in user
 $user = $_SESSION['user'];

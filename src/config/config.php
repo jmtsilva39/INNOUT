@@ -20,6 +20,7 @@ require_once(realpath(dirname(__FILE__) . '/database.php')); // Arquivo respons�
 require_once(realpath(dirname(__FILE__) . '/loader.php')); // Arquivo que contém funções para carregar modelos, visualizações e templates
 require_once(realpath(dirname(__FILE__) . '/session.php')); // Arquivo responsável pela manipulação da sessão do usuário
 require_once(realpath(dirname(__FILE__) . '/date_utils.php')); // Arquivo com utilitários para manipulação de datas
+require_once(realpath(dirname(__FILE__) . '/utils.php'));
 require_once(realpath(MODEL_PATH . '/Model.php')); // Arquivo base de modelo (classe Model)
 require_once(realpath(MODEL_PATH . '/User.php')); // Arquivo que contém a definição da classe User
 require_once(realpath(MODEL_PATH . '/WorkingHours.php')); // Arquivo que contém a definição da classe WorkingHours
