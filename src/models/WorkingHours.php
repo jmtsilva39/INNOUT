@@ -56,6 +56,7 @@ class WorkingHours extends Model
         }
     }
 
+    
     // Registra a entrada ou saída do usuário
     public function innout($time)
     {

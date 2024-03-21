@@ -2,7 +2,6 @@
 session_start();
 requireValidSession();
 
-loadModel('WorkingHours');
 
 // Get the current timestamp
 $timestamp = time();

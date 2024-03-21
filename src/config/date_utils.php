@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: text/html; charset=utf-8');
 
 // Função para obter a data como um objeto DateTime
 function getDateAsDateTime($date)

@@ -3,7 +3,7 @@
 date_default_timezone_set('America/Sao_Paulo');
 
 // Define a localidade para o idioma português do Brasil
-setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'portuguese');
+setlocale(LC_TIME, 'pt_BR', 'pt-BR.utf-8', 'portuguese');
 
 // Constantes gerais
 define('DAILY_TIME', 60 * 60 * 8); // Define a quantidade de segundos em um dia de trabalho padrão (8 horas)

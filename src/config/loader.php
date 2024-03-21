@@ -36,6 +36,16 @@ function loadTemplateView($viewName, $params = array())
         }
     }
 
+    // Get the logged-in user
+    $user = $_SESSION['user'];
+
+    // Load working hours records for the logged-in user and today's date
+    $workingHours = WorkingHours::loadFromUserAndDate($user->id, date('Y-m-d'));
+    $workedInterval = $workingHours->getWorkedInterval()->format('%H:%I:%S');
+    $exitTime = $workingHours->getExitTime()->format('H:i:s');
+    $activeClock = $workingHours->getActiveClock();
+
+
     // Inclui o cabeçalho do template
     require_once(TEMPLATE_PATH . "/header.php");
     // Inclui a barra lateral do template
