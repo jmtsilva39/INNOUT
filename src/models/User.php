@@ -61,11 +61,11 @@ class User extends Model
             $errors['start_date'] = 'Data de Admissão é um campo abrigatório.';
         } elseif (!DateTime::createFromFormat('Y-m-d', $this->start_date)) {
             $errors['start_date'] = 'Data de Admissão deve seguir o padrão dd/mm/aaaa.';
-        }*/
+        
 
         if ($this->end_date && !DateTime::createFromFormat('Y-m-d', $this->end_date)) {
             $errors['end_date'] = 'Data de Desligamento deve seguir o padrão dd/mm/aaaa.';
-        }
+        }}*/
 
         if (!$this->password) {
             $errors['password'] = 'Senha é um campo abrigatório.';

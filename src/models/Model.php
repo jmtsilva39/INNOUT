@@ -14,9 +14,7 @@ class Model
     // Construtor da classe Model
     function __construct($arr, $sanitize = true)
     {
-        // Carrega os valores a partir de um array associativo
         $this->loadFromArray($arr, $sanitize);
-
         // Define o valor da chave primária como null se não estiver presente no array
         if (!array_key_exists('id', $arr)) {
             $this->id = null;
