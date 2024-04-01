@@ -171,10 +171,12 @@ class WorkingHours extends Model
         $startDate = getFirstDayOfMonth($date)->format('Y-m-d');
         $endDate = getLastDayOfMonth($date)->format('Y-m-d');
 
-        $result = static::getResultSetFromSelect([
-            'user_id' => $userId,
-            'raw' => "work_date between '{$startDate}' AND '{$endDate}'"
-        ]);
+        // Consulta para obter o relatório mensal do usuário, incluindo o nome do usuário
+        $sql = "SELECT wh.*, u.name as user_name FROM working_hours wh
+            LEFT JOIN users u ON wh.user_id = u.id
+            WHERE wh.user_id = '{$userId}'
+            AND wh.work_date BETWEEN '{$startDate}' AND '{$endDate}'";
+        $result = Database::getResultFromQuery($sql);
 
         if ($result) {
             while ($row = $result->fetch_assoc()) {
@@ -184,6 +186,7 @@ class WorkingHours extends Model
 
         return $registries;
     }
+
 
     // Obtém os horários registrados
     private function getTimes()

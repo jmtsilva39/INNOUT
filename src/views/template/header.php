@@ -18,10 +18,12 @@
     <header class="header">
         <!--lOGO -->
         <div class="logo">
-            <i class="icofont-travelling mr-2"></i>
-            <span class="font-weight-light">Ponto</span>
-            <span class="font-weight-bold mr-2">G</span>
-            <i class="icofont-runner-alt-1"></i>
+            <a href="welcome.php" style="color: inherit; text-decoration: none; cursor: auto;">
+                <i class="icofont-travelling mr-2"></i>
+                <span class="font-weight-light">Ponto</span>
+                <span class="font-weight-bold mr-2">G</span>
+                <i class="icofont-runner-alt-1"></i>
+            </a>
         </div>
 
         <div class="menu-toggle mx-3">

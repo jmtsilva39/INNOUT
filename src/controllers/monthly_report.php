@@ -16,13 +16,26 @@ $users = null;
 // Se o usuário for um administrador, obtém todos os usuários
 if ($user->is_admin) {
     $users = User::get();
+   
+    // Extrai os nomes dos usuários para um array separado
+    $userNames = [];
+    foreach ($users as $user) {
+        $userNames[] = $user->name;
+    }
+    //Dentro de $userNames[] estão todos os usuarios em array
+
+    // Ordena os nomes dos usuários em ordem alfabética
+    array_multisort($userNames, SORT_ASC, $users);
+
     $selectedUserId = isset($_POST['user']) ? $_POST['user'] : $user->id;
 }
+
 
 // Define o período selecionado (padrão: mês atual)
 $selectedPeriod = isset($_POST['period']) ? $_POST['period'] : $currentDate->format('Y-m');
 
 // Cria um array com os períodos para os próximos 3 anos
+/*
 $periods = [];
 for ($yearDiff = 0; $yearDiff <= 2; $yearDiff++) {
     $year = date('Y') - $yearDiff;
@@ -31,6 +44,19 @@ for ($yearDiff = 0; $yearDiff <= 2; $yearDiff++) {
         $periods[$date->format('Y-m')] = $date->format('m / Y');
     }
 }
+*/
+// Array associativo com os meses formatados
+$periods = [];
+$currentYear = date('Y'); // Ano atual
+
+for ($month = 1; $month <= 12; $month++) {
+    $date = new DateTime("{$currentYear}-{$month}-1");
+    $periods[$date->format('Y-m')] = $date->format('m / Y');
+}
+
+
+// Ordena os meses em ordem decrescente (mais recente para o mais antigo)
+ksort($periods);
 
 // Obtém os registros mensais de horas trabalhadas
 $registries = WorkingHours::getMonthlyReport($selectedUserId, $selectedPeriod);
@@ -70,6 +96,7 @@ $balance = getTimeStringFromSeconds(abs($sumOfWorkedTime - $expectedTime));
 $sign = ($sumOfWorkedTime >= $expectedTime) ? '+' : '-';
 
 // Carrega a visualização do relatório mensal
+
 loadTemplateView('monthly_report', [
     'report' => $report,
     'sumOfWorkedTime' => getTimeStringFromSeconds($sumOfWorkedTime),
@@ -79,3 +106,4 @@ loadTemplateView('monthly_report', [
     'selectedUserId' => $selectedUserId,
     'users' => $users,
 ]);
+
